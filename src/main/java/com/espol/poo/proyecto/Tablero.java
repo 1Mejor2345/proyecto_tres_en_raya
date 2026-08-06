@@ -7,11 +7,11 @@ import java.util.LinkedList;
  * Valores: 0 = vacío, 1 = X, 2 = O
  */
 public class Tablero {
-
+    private final int tamañoTablero = 3; //modelo estandar de un 3x3
     private int[][] casillas;
 
     public Tablero() {
-        this.casillas = new int[3][3];
+        this.casillas = new int[tamañoTablero][tamañoTablero];
     }
 
     // Coloca una ficha en la posición indicada
@@ -45,7 +45,8 @@ public class Tablero {
      */
     public int verificarGanador() {
         // Revisar filas
-        for (int i = 0; i < 3; i++) {
+        //si en caso debemos hacerlo mas grande debemos cambiar las validacions de ganar con unas variables
+        for (int i = 0; i < tamañoTablero; i++) {
             if (casillas[i][0] != 0
                     && casillas[i][0] == casillas[i][1]
                     && casillas[i][1] == casillas[i][2]) {
@@ -53,7 +54,7 @@ public class Tablero {
             }
         }
         // Revisar columnas
-        for (int j = 0; j < 3; j++) {
+        for (int j = 0; j < tamañoTablero; j++) {
             if (casillas[0][j] != 0
                     && casillas[0][j] == casillas[1][j]
                     && casillas[1][j] == casillas[2][j]) {
@@ -82,8 +83,8 @@ public class Tablero {
         if (verificarGanador() != 0) {
             return false;
         }
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
+        for (int i = 0; i < tamañoTablero; i++) {
+            for (int j = 0; j < tamañoTablero; j++) {
                 if (casillas[i][j] == 0) {
                     return false;
                 }
@@ -91,7 +92,6 @@ public class Tablero {
         }
         return true;
     }
-
     /**
      * Calcula la utilidad del tablero para un jugador.
      * u(jugador) = P(jugador) - P(oponente)
@@ -114,9 +114,9 @@ public class Tablero {
         int count = 0;
 
         // Revisar filas
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < tamañoTablero; i++) {
             boolean disponible = true;
-            for (int j = 0; j < 3; j++) {
+            for (int j = 0; j < tamañoTablero; j++) {
                 if (casillas[i][j] == oponente) {
                     disponible = false;
                     break;
@@ -126,9 +126,9 @@ public class Tablero {
         }
 
         // Revisar columnas
-        for (int j = 0; j < 3; j++) {
+        for (int j = 0; j < tamañoTablero; j++) {
             boolean disponible = true;
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < tamañoTablero; i++) {
                 if (casillas[i][j] == oponente) {
                     disponible = false;
                     break;
@@ -139,7 +139,7 @@ public class Tablero {
 
         // Revisar diagonal principal
         boolean disponible = true;
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < tamañoTablero; i++) {
             if (casillas[i][i] == oponente) {
                 disponible = false;
                 break;
@@ -149,8 +149,8 @@ public class Tablero {
 
         // Revisar diagonal secundaria
         disponible = true;
-        for (int i = 0; i < 3; i++) {
-            if (casillas[i][2 - i] == oponente) {
+        for (int i = 0; i < tamañoTablero; i++) {
+            if (casillas[i][tamañoTablero -1 - i] == oponente) {
                 disponible = false;
                 break;
             }
@@ -165,8 +165,8 @@ public class Tablero {
      */
     public Tablero copiar() {
         Tablero copia = new Tablero();
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
+        for (int i = 0; i < tamañoTablero; i++) {
+            for (int j = 0; j < tamañoTablero; j++) {
                 copia.casillas[i][j] = this.casillas[i][j];
             }
         }
@@ -178,8 +178,8 @@ public class Tablero {
      */
     public LinkedList<int[]> casillasLibres() {
         LinkedList<int[]> libres = new LinkedList<>();
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
+        for (int i = 0; i < tamañoTablero; i++) {
+            for (int j = 0; j < tamañoTablero; j++) {
                 if (casillas[i][j] == 0) {
                     libres.add(new int[]{i, j});
                 }

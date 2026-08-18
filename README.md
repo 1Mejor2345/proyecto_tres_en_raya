@@ -54,6 +54,11 @@ Donde `P` representa la cantidad de filas, columnas y diagonales que aún se enc
 - `LinkedList<Tree<E>>` para almacenar los hijos de cada nodo.
 - `Tree<E>` y `NodeTree<E>` como implementación genérica del árbol n-ario.
 
+## Estructura del Repositorio
+
+- `Grupo_06/`: Directorio que contiene el proyecto de NetBeans con el código fuente en Java.
+- `Grupo_06.docx`: Documento de reporte final con capturas de pantalla, explicaciones y la rúbrica de co-evaluación del grupo.
+- `README.md`: Este archivo.
 
 ### Clases principales
 

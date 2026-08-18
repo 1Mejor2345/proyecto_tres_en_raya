@@ -1,0 +1,4 @@
+target/
+Grupo_06/target/
+*.class
+*.jar
